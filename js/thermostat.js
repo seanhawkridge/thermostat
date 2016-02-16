@@ -1,12 +1,12 @@
 
 function Thermostat() {
   this.temperature = 20;
-  this.powerSavingMode = true;
+  this.powerSavingMode = "on";
   this.displayColour = 'yellow';
 };
 
 Thermostat.prototype.up = function() {
-  if((this.powerSavingMode === false && this.temperature < 32)||(this.powerSavingMode === true && this.temperature < 25)) {
+  if((this.powerSavingMode === "off" && this.temperature < 32)||(this.powerSavingMode === "on" && this.temperature < 25)) {
     this.temperature += 1;
     this.isColour();
   } else {
@@ -25,11 +25,11 @@ Thermostat.prototype.down = function() {
 };
 
 Thermostat.prototype.powerSaveOn = function () {
-    this.powerSavingMode = true;
+    this.powerSavingMode = "on";
 };
 
 Thermostat.prototype.powerSaveOff = function () {
-    this.powerSavingMode = false;
+    this.powerSavingMode = "off";
 };
 
 

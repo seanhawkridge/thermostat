@@ -10,7 +10,7 @@ describe("Thermostat", function() {
   });
 
   it("should initialize with powersaving on", function(){
-    expect(thermo.powerSavingMode).toBe(true);
+    expect(thermo.powerSavingMode).toBe("on");
   });
 
   it("should raise the temperature with the up button", function(){
@@ -29,12 +29,12 @@ describe("Thermostat", function() {
   });
 
   it("Should change value of powersaving mode", function(){
-    expect(thermo.powerSavingMode).toBe(true);
+    expect(thermo.powerSavingMode).toBe("on");
   });
 
   it("Should change value of powersaving mode", function(){
     thermo.powerSaveOff()
-    expect(thermo.powerSavingMode).toBe(false);
+    expect(thermo.powerSavingMode).toBe("off");
   });
 
   it("Should raise error at 33 temp if powersave off", function(){
