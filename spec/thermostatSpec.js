@@ -9,8 +9,8 @@ describe("Thermostat", function() {
     expect(thermo.temperature).toEqual(20);
   });
 
-  it("should initialize with powersaving off", function(){
-    expect(thermo.powerSavingMode).toBe(false);
+  it("should initialize with powersaving on", function(){
+    expect(thermo.powerSavingMode).toBe(true);
   });
 
   it("should raise the temperature with the up button", function(){
@@ -29,7 +29,6 @@ describe("Thermostat", function() {
   });
 
   it("Should change value of powersaving mode", function(){
-    thermo.powerSaveOn()
     expect(thermo.powerSavingMode).toBe(true);
   });
 
@@ -39,14 +38,39 @@ describe("Thermostat", function() {
   });
 
   it("Should raise error at 33 temp if powersave off", function(){
+    thermo.powerSaveOff()
     thermo.temperature = 32;
     expect(function () {thermo.up();}).toThrow(new Error ('Max temperature reached'));
   });
 
   it("Should raise error at 26 temp if powersave on",function(){
-    thermo.powerSaveOn()
     thermo.temperature = 25;
     expect(function () {thermo.up();}).toThrow(new Error ('Max temperature reached'));
+  });
+
+  it("Should return to 20 degrees when reset is pushed", function(){
+    thermo.temperature = 30;
+    thermo.reset();
+    expect(thermo.temperature).toEqual(20);
+  });
+
+  it("Should change the display colour to green below 18 degrees", function() {
+    thermo.temperature = 17;
+    thermo.isColour()
+    expect(thermo.displayColour).toBe('green')
+  });
+
+  it("Should change the display colour to yellow between 18 - 24 degrees", function() {
+    thermo.temperature = 23;
+    thermo.isColour()
+    expect(thermo.displayColour).toBe('yellow');
+  });
+
+  it("Should change the display colour to red above 25 degrees", function() {
+    thermo.powerSaveOff();
+    thermo.temperature = 28;
+    thermo.isColour()
+    expect(thermo.displayColour).toBe('red');
   });
 
 });
