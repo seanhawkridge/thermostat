@@ -6,27 +6,19 @@ $(document).ready(function() {
   $bgcolour = function() {
 
     if (thermoMonkey.powerLevel == 'high') {
-      colour = 'red';
+      colour = '#CC333F';
     } else if (thermoMonkey.powerLevel == 'low') {
-      colour = 'green';
+      colour = '#30C4C9';
     } else {
-      colour = 'yellow';
+      colour = '#EDC951';
     }
 
     $("#thermostat-display").css({
       borderColor : colour,
-      WebkitTransition : 'border-color 1s ease',
-      MozTransition    : 'border-color 1s ease',
-      MsTransition     : 'border-color 1s ease',
-      OTransition      : 'border-color 1s ease',
       transition       : 'border-color 1s ease'
     });
     $("#thermostat-container h1#temperature").css({
       color : colour,
-      WebkitTransition : 'color 1s ease',
-      MozTransition    : 'color 1s ease',
-      MsTransition     : 'color 1s ease',
-      OTransition      : 'color 1s ease',
       transition       : 'color 1s ease'
     });
 
@@ -67,28 +59,15 @@ $(document).ready(function() {
     $bgcolour();
   });
 
-  // $("#pson").click(function() {
-  //   thermoMonkey.powerSaveOn()
-  //   $("#ps-status").text(thermoMonkey.powerSavingMode)
-  // });
-  //
-  // $("#psoff").click(function() {
-  //   thermoMonkey.powerSaveOff()
-  //   $("#ps-status").text(thermoMonkey.powerSavingMode)
-  // });
 
   thermoMonkey.powerSaveOn();
 
   function on() {
       thermoMonkey.powerSaveOn();
       $animateText();
-      $("#ps-status").text(thermoMonkey.powerSavingMode);
+      $("#ps-status").stop( true, true ).text(thermoMonkey.powerSavingMode);
       $(this).css({
-        color : 'green',
-        WebkitTransition : 'color 500ms ease',
-        MozTransition    : 'color 500ms ease',
-        MsTransition     : 'color 500ms ease',
-        OTransition      : 'color 500ms ease',
+        color : '#30C4C9',
         transition       : 'color 500ms ease'
       })
       $(this).one("click", off);
@@ -96,30 +75,14 @@ $(document).ready(function() {
 
   function off() {
       thermoMonkey.powerSaveOff()
-      $("#ps-status").text(thermoMonkey.powerSavingMode);
+      $("#ps-status").stop( true, true ).text(thermoMonkey.powerSavingMode);
       $(this).css({
-        color : 'red',
-        WebkitTransition : 'color 500ms ease',
-        MozTransition    : 'color 500ms ease',
-        MsTransition     : 'color 500ms ease',
-        OTransition      : 'color 500ms ease',
+        color : '#CC333F',
         transition       : 'color 500ms ease'
       })
       $(this).one("click", on);
   }
 
   $("#thermostat-container button#powersave.control").one("click", off);
-
-
-
-
-
-  // $( "#powersave" ).toggle(function() {
-  //   thermoMonkey.powerSaveOn()
-  //   $("#ps-status").text(thermoMonkey.powerSavingMode)
-  // }, function() {
-  //   thermoMonkey.powerSaveOff()
-  //   $("#ps-status").text(thermoMonkey.powerSavingMode)
-  // });
 
 });

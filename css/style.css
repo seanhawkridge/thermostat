@@ -17,7 +17,7 @@ section {
     position: relative;
     width: 300px;
     height: 300px;
-    border: 7px solid yellow;
+    border: 3px solid #EDC951;
     border-radius: 300px;
     margin-bottom: 3em; }
     #thermostat-container #thermostat-display h1 {
@@ -26,18 +26,20 @@ section {
       text-align: center;
       top: 25%;
       left: 0;
-      font-size: 6em; }
+      font-size: 6em;
+      font-weight: 100; }
   #thermostat-container .button-row {
     width: 100%;
     text-align: center; }
   #thermostat-container button.control {
     background: #444;
-    border: 1px dotted #fff;
+    border: 1px solid #9f9f9f;
+    border-radius: 5px;
     text-transform: uppercase; }
     #thermostat-container button.control:focus {
       outline: none; }
   #thermostat-container button#powersave.control {
-    color: green;
+    color: #30C4C9;
     width: 50%; }
 
 section#weather {
