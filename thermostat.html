@@ -1,20 +1,69 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <link rel="stylesheet" type="text/css" href="css/foundation.css">
+  <link rel="stylesheet" type="text/css" href="css/style.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
   <script src="js/thermostat.js"></script>
   <script src="js/thermostatUi.js"></script>
+  <script src="js/weather.js"></script>
+
   <title>
     Thermostat
   </title>
 </head>
   <body>
-    <div id="temperature"></div>
-      <button id="up">Up</button>
-      <button id="down">Down</button>
-      <button id="reset">Reset</button>
-      <button id="pson">Power Saving on</button>
-      <button id="psoff">Power Saving off</button>
-      Power saving is <span id="ps-status">on</span>
+<main>
+
+<section id="thermostat">
+
+    <div class="row">
+      <div class="small-12 medium-6 medium-centered columns">
+        <div id="thermostat-container">
+          <div id="thermostat-display">
+            <h1 id="temperature">
+
+            </h1>
+          </div>
+          <div class="button-row">
+            <button class="small control" id="up">Up</button>
+            <button class="small control" id="down">Down</button>
+            <button class="small control" id="reset">Reset</button>
+          </div>
+          <div class="button-row">
+            <button class="small control" id="powersave">Power Saving: <span id="ps-status">on</span></button>
+            <!-- <button class="small control" id="psoff">Power Saving off</button> -->
+          </div>
+      </div>
+    </div>
+
+  </row>
+
+</section>
+
+<section id="weather">
+
+  <div class="row">
+
+    <div class="small-12 medium-6 medium-centered columns">
+
+      <h1>Weather check</h1>
+        <div id="weather-container">
+            <h1 id="current-temperature">
+
+            </h1>
+            <div id="conditions">
+
+            </div>
+              <form id="select-city">
+                <input id="current-city" type="text" placeholder="Enter a city"></input>
+                <button type="submit">Go</button>
+              </form>
+        </div>
+    </div>
+  </div>
+</section>
+</main>
+
   </body>
 </html>

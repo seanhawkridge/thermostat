@@ -2,6 +2,7 @@
 $(document).ready(function(){
 
   $('#select-city').submit(function(e) {
+    console.log('clicked');
     e.preventDefault();
     var url = 'http://api.openweathermap.org/data/2.5/weather?q=';
     var city = $('#current-city').val();
@@ -10,8 +11,8 @@ $(document).ready(function(){
 
     $.get(url + city + id + units, function(report) {
               console.log(report);
-              $('span#current-temperature').text(report.main.temp);
-              $('.cloud').text(report.weather[0].description);
+              $('#current-temperature').text(report.main.temp);
+              $('#conditions').text(report.weather[0].description);
               });
       });
 });

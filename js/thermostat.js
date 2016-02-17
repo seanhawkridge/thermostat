@@ -2,13 +2,13 @@
 function Thermostat() {
   this.temperature = 20;
   this.powerSavingMode = "on";
-  this.displayColour = 'yellow';
+  this.powerLevel = 'medium';
 };
 
 Thermostat.prototype.up = function() {
   if((this.powerSavingMode === "off" && this.temperature < 32)||(this.powerSavingMode === "on" && this.temperature < 25)) {
     this.temperature += 1;
-    this.isColour();
+    this.powerLevelUpdate();
   } else {
     throw new Error('Max temperature reached');
   };
@@ -17,7 +17,7 @@ Thermostat.prototype.up = function() {
 Thermostat.prototype.down = function() {
   if(this.temperature > 10){
     this.temperature -= 1;
-    this.isColour();
+    this.powerLevelUpdate();
   }
   else {
     throw new Error('Temp too low');
@@ -25,7 +25,10 @@ Thermostat.prototype.down = function() {
 };
 
 Thermostat.prototype.powerSaveOn = function () {
+    this.temperature = 25;
+    this.powerLevelUpdate();
     this.powerSavingMode = "on";
+
 };
 
 Thermostat.prototype.powerSaveOff = function () {
@@ -35,15 +38,15 @@ Thermostat.prototype.powerSaveOff = function () {
 
 Thermostat.prototype.reset = function () {
     this.temperature = 20
-    this.isColour();
+    this.powerLevelUpdate();
 };
 
-Thermostat.prototype.isColour = function() {
+Thermostat.prototype.powerLevelUpdate = function() {
   if (this.temperature < 18) {
-    this.displayColour = 'green';
+    this.powerLevel = 'low';
   } else if (this.temperature >= 18 && this.temperature < 25) {
-    this.displayColour = 'yellow';
+    this.powerLevel = 'medium';
   } else {
-    this.displayColour = 'red';
+    this.powerLevel = 'high';
   };
 };

@@ -32,6 +32,13 @@ describe("Thermostat", function() {
     expect(thermo.powerSavingMode).toBe("on");
   });
 
+  it("Should return the temperature to 25 if higher than 25 when powersave mode is turned on", function(){
+    thermo.powerSaveOff();
+    thermo.temperature = 28;
+    thermo.powerSaveOn();
+    expect(thermo.temperature).toBe(25);
+  });
+
   it("Should change value of powersaving mode", function(){
     thermo.powerSaveOff()
     expect(thermo.powerSavingMode).toBe("off");
@@ -54,23 +61,23 @@ describe("Thermostat", function() {
     expect(thermo.temperature).toEqual(20);
   });
 
-  it("Should change the display colour to green below 18 degrees", function() {
+  it("Should change the display colour to low below 18 degrees", function() {
     thermo.temperature = 17;
-    thermo.isColour()
-    expect(thermo.displayColour).toBe('green')
+    thermo.powerLevelUpdate()
+    expect(thermo.powerLevel).toBe('low')
   });
 
-  it("Should change the display colour to yellow between 18 - 24 degrees", function() {
+  it("Should change the display colour to medium between 18 - 24 degrees", function() {
     thermo.temperature = 23;
-    thermo.isColour()
-    expect(thermo.displayColour).toBe('yellow');
+    thermo.powerLevelUpdate()
+    expect(thermo.powerLevel).toBe('medium');
   });
 
-  it("Should change the display colour to red above 25 degrees", function() {
+  it("Should change the display colour to high above 25 degrees", function() {
     thermo.powerSaveOff();
     thermo.temperature = 28;
-    thermo.isColour()
-    expect(thermo.displayColour).toBe('red');
+    thermo.powerLevelUpdate()
+    expect(thermo.powerLevel).toBe('high');
   });
 
 });
