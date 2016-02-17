@@ -1,0 +1,1 @@
+$(document).ready(function(){$("#select-city").submit(function(e){e.preventDefault();var t="http://api.openweathermap.org/data/2.5/weather?q=",c=$("#current-city").val(),n="&APPID=e4513b76de988bd77bb49e09c03c1ca6",a="&units=metric";$.get(t+c+n+a,function(e){console.log(e),$("span#current-temperature").text(e.main.temp),$(".cloud").text(e.weather[0].description)})})});
