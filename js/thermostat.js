@@ -1,12 +1,16 @@
 
 function Thermostat() {
-  this.temperature = 20;
+  this.DEFAULT_TEMP = 20;
+  this.MAX_TEMP = 32;
+  this.MIN_TEMP = 10;
+  this.PS_MAX_TEMP = 25;
   this.powerSavingMode = "on";
   this.powerLevel = 'medium';
+  this.temperature = this.DEFAULT_TEMP;
 };
 
 Thermostat.prototype.up = function() {
-  if((this.powerSavingMode === "off" && this.temperature < 32)||(this.powerSavingMode === "on" && this.temperature < 25)) {
+  if((this.powerSavingMode === "off" && this.temperature < this.MAX_TEMP)||(this.powerSavingMode === "on" && this.temperature < this.PS_MAX_TEMP)) {
     this.temperature += 1;
     this.powerLevelUpdate();
   } else {
@@ -15,7 +19,7 @@ Thermostat.prototype.up = function() {
 };
 
 Thermostat.prototype.down = function() {
-  if(this.temperature > 10){
+  if(this.temperature > this.MIN_TEMP){
     this.temperature -= 1;
     this.powerLevelUpdate();
   }
@@ -25,8 +29,8 @@ Thermostat.prototype.down = function() {
 };
 
 Thermostat.prototype.powerSaveOn = function () {
-    if (this.temperature > 25) {
-    this.temperature = 25;
+    if (this.temperature > this.PS_MAX_TEMP) {
+    this.temperature = this.PS_MAX_TEMP
     this.powerLevelUpdate();
     }
     this.powerSavingMode = "on";
@@ -38,7 +42,7 @@ Thermostat.prototype.powerSaveOff = function () {
 
 
 Thermostat.prototype.reset = function () {
-    this.temperature = 20
+    this.temperature = this.DEFAULT_TEMP;
     this.powerLevelUpdate();
 };
 

@@ -11,8 +11,7 @@ $(document).ready(function(){
 
     $.get(url + city + id + units, function(report) {
               console.log(report);
-              // $('#current-temperature').html(Math.round(report.main.temp) + '&#176;C');
               $('#conditions').html(report.name + ' | ' + Math.round(report.main.temp) + '&#176;C | ' + report.weather[0].description);
-              });
-      });
+    });
+  });
 });
